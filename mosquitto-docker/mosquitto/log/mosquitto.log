@@ -1,0 +1,133 @@
+1759459271: mosquitto version 2.0.22 starting
+1759459271: Config loaded from /mosquitto/config/mosquitto.conf.
+1759459271: Opening ipv4 listen socket on port 1883.
+1759459271: Opening ipv6 listen socket on port 1883.
+1759459271: Opening websockets listen socket on port 9001.
+1759459271: mosquitto version 2.0.22 running
+1759461071: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1759462249: New connection from 192.168.65.1:57291 on port 1883.
+1759462249: New client connected from 192.168.65.1:57291 as auto-3C3B007C-9739-B422-213F-ED3AA08D8E73 (p2, c1, k60).
+1759462264: Client auto-3C3B007C-9739-B422-213F-ED3AA08D8E73 disconnected.
+1759462287: New connection from 192.168.65.1:37395 on port 1883.
+1759462287: New client connected from 192.168.65.1:37395 as auto-DBDF8AEE-0B08-B6D7-6235-7757F536D653 (p2, c1, k60).
+1759462301: New connection from 192.168.65.1:30118 on port 1883.
+1759462301: New client connected from 192.168.65.1:30118 as auto-703EE14F-93EC-6F93-515A-7566E47F07E7 (p2, c1, k60).
+1759462301: Client auto-703EE14F-93EC-6F93-515A-7566E47F07E7 disconnected.
+1759462339: Client auto-DBDF8AEE-0B08-B6D7-6235-7757F536D653 disconnected.
+1759462596: New connection from 192.168.65.1:37040 on port 1883.
+1759462596: New client connected from 192.168.65.1:37040 as auto-D019372D-BD05-B697-0F9A-FB21430A1A05 (p2, c1, k60, u'username').
+1759462621: Client auto-D019372D-BD05-B697-0F9A-FB21430A1A05 disconnected.
+1759462629: New connection from 192.168.65.1:65427 on port 1883.
+1759462629: New client connected from 192.168.65.1:65427 as auto-410A9654-42E1-1296-8E8C-3CE3C41B9A46 (p2, c1, k60, u'username').
+1759462645: New connection from 192.168.65.1:47908 on port 1883.
+1759462645: New client connected from 192.168.65.1:47908 as auto-8C5C24FE-CFDE-63D6-278D-9FC3359FC169 (p2, c1, k60, u'username').
+1759462645: Client auto-8C5C24FE-CFDE-63D6-278D-9FC3359FC169 disconnected.
+1759462687: Client auto-410A9654-42E1-1296-8E8C-3CE3C41B9A46 disconnected.
+1759462717: New connection from 192.168.65.1:20804 on port 1883.
+1759462717: New client connected from 192.168.65.1:20804 as auto-E70EBAED-3115-0A6F-78BE-B5AEF25B4260 (p2, c1, k60, u'username').
+1759462725: New connection from 192.168.65.1:64377 on port 1883.
+1759462725: New client connected from 192.168.65.1:64377 as auto-2C7AD98D-4B0A-E4CD-6DC4-A4AE4A01F45F (p2, c1, k60, u'username').
+1759462725: Client auto-2C7AD98D-4B0A-E4CD-6DC4-A4AE4A01F45F disconnected.
+1759462747: Client auto-E70EBAED-3115-0A6F-78BE-B5AEF25B4260 disconnected.
+1759462757: New connection from ::1:41798 on port 1883.
+1759462757: New client connected from ::1:41798 as auto-0FCDC280-3D1E-2500-F996-A37FCC850282 (p2, c1, k60).
+1759462765: New connection from ::1:46076 on port 1883.
+1759462765: New client connected from ::1:46076 as auto-0A81C278-71D3-CB64-91A3-DABDB9A083DD (p2, c1, k60).
+1759462765: Client auto-0A81C278-71D3-CB64-91A3-DABDB9A083DD disconnected.
+1759462872: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1759464673: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1759466474: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1759467786: New connection from ::1:43180 on port 1883.
+1759467786: New client connected from ::1:43180 as auto-8B5379A9-5729-BC5F-AE31-F875284F4499 (p2, c1, k60).
+1759467786: Client auto-8B5379A9-5729-BC5F-AE31-F875284F4499 disconnected.
+1759468275: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1759468414: New connection from 192.168.65.1:53450 on port 1883.
+1759468414: New connection from 192.168.65.1:25303 on port 1883.
+1759468414: Client <unknown> disconnected due to protocol error.
+1759468415: Client <unknown> disconnected due to protocol error.
+1759468415: New connection from 192.168.65.1:48313 on port 1883.
+1759468415: Client <unknown> disconnected due to protocol error.
+1759468415: New connection from 192.168.65.1:21939 on port 1883.
+1759468415: Client <unknown> disconnected due to protocol error.
+1759468420: New connection from 192.168.65.1:19928 on port 1883.
+1759468420: New connection from 192.168.65.1:40824 on port 1883.
+1759468420: Client <unknown> disconnected due to protocol error.
+1759468450: Client <unknown> disconnected due to protocol error.
+1759468450: New connection from 192.168.65.1:17219 on port 1883.
+1759468450: Client <unknown> disconnected due to protocol error.
+1759468450: New connection from 192.168.65.1:17044 on port 1883.
+1759468450: Client <unknown> disconnected due to protocol error.
+1759469637: mosquitto version 2.0.22 terminating
+1759469637: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1759522927: mosquitto version 2.0.22 starting
+1759522927: Config loaded from /mosquitto/config/mosquitto.conf.
+1759522927: Error: Unable to open pwfile "/mosquitto/config/password_file".
+1759522927: Error opening password file "/mosquitto/config/password_file".
+1759522951: mosquitto version 2.0.22 starting
+1759522951: Config loaded from /mosquitto/config/mosquitto.conf.
+1759522951: Error: Unable to open pwfile "/mosquitto/config/password_file".
+1759522951: Error opening password file "/mosquitto/config/password_file".
+1759523062: mosquitto version 2.0.22 starting
+1759523062: Config loaded from /mosquitto/config/mosquitto.conf.
+1759523062: Error: Unable to open pwfile "/mosquitto/config/passwd".
+1759523062: Error opening password file "/mosquitto/config/passwd".
+1759523076: mosquitto version 2.0.22 starting
+1759523076: Config loaded from /mosquitto/config/mosquitto.conf.
+1759523076: Error: Unable to open pwfile "/mosquitto/config/passwd".
+1759523076: Error opening password file "/mosquitto/config/passwd".
+1759523185: mosquitto version 2.0.22 starting
+1759523185: Config loaded from /mosquitto/config/mosquitto.conf.
+1759523185: Error: Unable to open pwfile "/mosquitto/config/passwd".
+1759523185: Error opening password file "/mosquitto/config/passwd".
+1759523254: mosquitto version 2.0.22 starting
+1759523254: Config loaded from /mosquitto/config/mosquitto.conf.
+1759523254: Opening ipv4 listen socket on port 1883.
+1759523254: Opening ipv6 listen socket on port 1883.
+1759523254: Opening websockets listen socket on port 9001.
+1759523254: Opening ipv4 listen socket on port 8883.
+1759523254: Opening ipv6 listen socket on port 8883.
+1759523254: Error: Unable to load CA certificates. Check cafile "/mosquitto/config/ca.crt".
+1759523254: OpenSSL Error[0]: error:80000002:system library::No such file or directory
+1759523254: OpenSSL Error[1]: error:10000080:BIO routines::no such file
+1759523254: OpenSSL Error[2]: error:05880020:x509 certificate routines::BIO lib
+1759523355: mosquitto version 2.0.22 starting
+1759523355: Config loaded from /mosquitto/config/mosquitto.conf.
+1759523355: Opening ipv4 listen socket on port 1883.
+1759523355: Opening ipv6 listen socket on port 1883.
+1759523355: Opening websockets listen socket on port 9001.
+1759523355: Opening ipv4 listen socket on port 8883.
+1759523355: Opening ipv6 listen socket on port 8883.
+1759523355: Opening websockets listen socket on port 9002.
+1759523355: mosquitto version 2.0.22 running
+1759523656: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1759523957: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1759524258: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1759524365: mosquitto version 2.0.22 terminating
+1759524365: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1759524370: mosquitto version 2.0.22 starting
+1759524370: Config loaded from /mosquitto/config/mosquitto.conf.
+1759524370: Opening ipv4 listen socket on port 1883.
+1759524370: Opening ipv6 listen socket on port 1883.
+1759524370: Opening websockets listen socket on port 9001.
+1759524370: Opening ipv4 listen socket on port 8883.
+1759524370: Opening ipv6 listen socket on port 8883.
+1759524370: Opening websockets listen socket on port 9002.
+1759524370: mosquitto version 2.0.22 running
+1759524375: New connection from ::1:37436 on port 1883.
+1759524375: New client connected from ::1:37436 as auto-1B2401DA-BB60-080C-9756-B5F6CDEF8BDF (p2, c1, k60).
+1759524375: No will message specified.
+1759524375: Sending CONNACK to auto-1B2401DA-BB60-080C-9756-B5F6CDEF8BDF (0, 0)
+1759524375: Received SUBSCRIBE from auto-1B2401DA-BB60-080C-9756-B5F6CDEF8BDF
+1759524375: 	healthcheck (QoS 0)
+1759524375: auto-1B2401DA-BB60-080C-9756-B5F6CDEF8BDF 0 healthcheck
+1759524375: Sending SUBACK to auto-1B2401DA-BB60-080C-9756-B5F6CDEF8BDF
+1759524390: New connection from ::1:39178 on port 1883.
+1759524390: New client connected from ::1:39178 as auto-157DAAB4-028F-B397-B9C0-87E07BC828E5 (p2, c1, k60).
+1759524390: No will message specified.
+1759524390: Sending CONNACK to auto-157DAAB4-028F-B397-B9C0-87E07BC828E5 (0, 0)
+1759524390: Received SUBSCRIBE from auto-157DAAB4-028F-B397-B9C0-87E07BC828E5
+1759524390: 	healthcheck (QoS 0)
+1759524390: auto-157DAAB4-028F-B397-B9C0-87E07BC828E5 0 healthcheck
+1759524390: Sending SUBACK to auto-157DAAB4-028F-B397-B9C0-87E07BC828E5
+1759524415: mosquitto version 2.0.22 terminating
+1759524415: Saving in-memory database to /mosquitto/data//mosquitto.db.

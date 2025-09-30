@@ -1,0 +1,52 @@
+services:
+  mqtt-broker:
+    image: eclipse-mosquitto:latest
+    container_name: mosquitto_broker
+    ports:
+      - "1883:1883" # MQTT
+      - "8883:8883" # MQTTS (secure)
+      - "9001:9001" # WebSockets
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    restart: unless-stopped
+    environment:
+      - TZ=UTC
+    command: mosquitto -c /mosquitto/config/mosquitto.conf
+    healthcheck:
+      test: ["CMD-SHELL", "mosquitto_sub -h localhost -t 'healthcheck' -C 1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s # Initial delay before starting health checks
+    networks:
+      - mqtt_network
+
+  mqtt-publisher:
+    image: eclipse-mosquitto:latest
+    container_name: mqtt_publisher
+    depends_on:
+      - mqtt-broker
+    networks:
+      - mqtt_network
+
+  mqtt-subscriber:
+    image: eclipse-mosquitto:latest
+    container_name: mqtt_subscriber
+    depends_on:
+      - mqtt-broker
+    networks:
+      - mqtt_network
+  python-app:
+    build: ./python-app # Path to your Python application's Dockerfile
+    container_name: mqtt-python-client
+    depends_on:
+      - mqtt-broker # Ensures broker starts before the app
+    environment:
+      MQTT_BROKER_HOST: mqtt-broker # Use the service name as hostname
+      MQTT_BROKER_PORT: 1883
+
+networks:
+  mqtt_network:
+    driver: bridge
