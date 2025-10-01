@@ -5,9 +5,9 @@ services:
     ports:
       - "15000:5000" # Example port if your Python app is a web server
     depends_on:
-      - database
+      - mysql_db
     environment:
-      MYSQL_HOST: database # Hostname for connecting to MySQL
+      MYSQL_HOST: mysql_db # Hostname for connecting to MySQL
       MYSQL_USER: raphaelzh
       MYSQL_PASSWORD: 123456 # Replace with the password set in MySQL service
       MYSQL_DATABASE: heartbeat_monitor
@@ -15,10 +15,10 @@ services:
     networks:
       - mysql_network
 
-  database:
+  mysql_db:
     image: mysql:latest # Path to your MySQL Dockerfile or use an image like 'mysql:latest'
     container_name: mysql_database
-    hostname: database
+    hostname: mysql_db
     environment:
       MYSQL_ROOT_PASSWORD: 123456 # Replace with a strong password
       MYSQL_DATABASE: heartbeat_monitor
