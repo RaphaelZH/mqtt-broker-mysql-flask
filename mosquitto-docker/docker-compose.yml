@@ -24,30 +24,27 @@ services:
       - mqtt_network
 
   mqtt-publisher:
+    build: ./python-app # Path to your Python application's Dockerfile
     image: eclipse-mosquitto:latest
     container_name: mqtt_publisher
-    depends_on:
-      - mqtt-broker
-    networks:
-      - mqtt_network
-
-  mqtt-subscriber:
-    image: eclipse-mosquitto:latest
-    build: ./python-app # Path to your Python application's Dockerfile
-    container_name: mqtt_subscriber
-    depends_on:
-      - mqtt-broker
-    networks:
-      - mqtt_network
-      
-  python-app:
-    build: ./python-app # Path to your Python application's Dockerfile
-    container_name: mqtt-python-client
     depends_on:
       - mqtt-broker # Ensures broker starts before the app
     environment:
       MQTT_BROKER_HOST: mqtt-broker # Use the service name as hostname
       MQTT_BROKER_PORT: 1883
+    networks:
+      - mqtt_network
+
+  mqtt-subscriber:
+    build: ./python-app # Path to your Python application's Dockerfile
+    container_name: mqtt_subscriber
+    depends_on:
+      - mqtt-broker # Ensures broker starts before the app
+    environment:
+      MQTT_BROKER_HOST: mqtt-broker # Use the service name as hostname
+      MQTT_BROKER_PORT: 1883
+    networks:
+      - mqtt_network
 
 networks:
   mqtt_network:
