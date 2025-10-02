@@ -33,11 +33,13 @@ services:
 
   mqtt-subscriber:
     image: eclipse-mosquitto:latest
+    build: ./python-app # Path to your Python application's Dockerfile
     container_name: mqtt_subscriber
     depends_on:
       - mqtt-broker
     networks:
       - mqtt_network
+      
   python-app:
     build: ./python-app # Path to your Python application's Dockerfile
     container_name: mqtt-python-client
