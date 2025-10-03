@@ -1,2 +1,2 @@
-mosquitto-docker/mosquitto/data/mosquitto.db
-mosquitto-docker/mosquitto/log/mosquitto.log
+*.db
+*.log
