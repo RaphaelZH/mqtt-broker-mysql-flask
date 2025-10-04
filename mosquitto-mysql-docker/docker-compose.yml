@@ -15,7 +15,11 @@ services:
       - TZ=UTC
     command: mosquitto -c /mosquitto/config/mosquitto.conf
     healthcheck:
-      test: ["CMD-SHELL", "mosquitto_sub -h localhost -t 'healthcheck' -C 1 || exit 1"]
+      test:
+        [
+          "CMD-SHELL",
+          "mosquitto_sub -h localhost -t 'healthcheck' -C 1 || exit 1",
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -45,6 +49,35 @@ services:
     networks:
       - mqtt_network
 
+  mysql-db:
+    image: mysql:latest
+    container_name: mysql_database
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456 # Replace with a strong password
+      MYSQL_DATABASE: mqtt_db # Replace with your desired database name
+      MYSQL_USER: raphaelzh # Replace with your desired username
+      MYSQL_PASSWORD: 123456 # Replace with a strong password
+    ports:
+      # - "3306:3306" # Standard MySQL port
+      - "13306:3306" # Standard MySQL port
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+    restart: unless-stopped
+    depends_on:
+      - mqtt-broker # Optional: Ensure MQTT starts first if your application relies on it
+    networks:
+      - mqtt_network
+
 networks:
   mqtt_network:
     driver: bridge
+
+volumes:
+  mosquitto_data:
+    driver: local
+  mosquitto_config:
+    driver: local
+  mosquitto_log:
+    driver: local
+  mysql_data:
+    driver: local

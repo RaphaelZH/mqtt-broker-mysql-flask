@@ -1,4 +1,5 @@
 import paho.mqtt.client as mqtt
+
 import json
 import os
 import time
@@ -9,11 +10,11 @@ broker_port = int(os.getenv("MQTT_BROKER_PORT", 1883))
 
 def on_connect(client, userdata, flags, reason_code, properties):
     print(f"Connected with result code {reason_code}")
-    client.subscribe("test/topic")
+    client.subscribe("heart_rate/topic")
 
 
-def on_message(client, userdata, msg):
-    print(f"Received message: {msg.payload.decode()} on topic {msg.topic}")
+def on_message(client, userdata, message):
+    print(f"Received message: {message.payload.decode()} on topic {message.topic}")
 
 
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
