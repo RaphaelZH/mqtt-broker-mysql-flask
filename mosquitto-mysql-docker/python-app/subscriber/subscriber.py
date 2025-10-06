@@ -32,27 +32,27 @@ def on_message(client, userdata, message):
 
 
 mydb = mysql.connector.connect(
-    host="host.docker.internal", user="root", password="Métronome", port=3306
+    host="mysql-db", user="root", password="123456", port=3306, database="heartbeat_monitor"
 )
 
 # Create a cursor object
 mycursor = mydb.cursor()
 
 # Execute the CREATE DATABASE IF NOT EXISTS statement
-sql_query = "CREATE DATABASE IF NOT EXISTS heartbeat_monitor"
-mycursor.execute(sql_query)
-mydb.database = "heartbeat_monitor"
-
-mycursor.execute(
-    "CREATE TABLE IF NOT EXISTS heartbeat_records (datetime VARCHAR(255), heart_rate INT)"
-)
+#sql_query = "CREATE DATABASE IF NOT EXISTS heartbeat_monitor"
+#mycursor.execute(sql_query)
+#mydb.database = "heartbeat_monitor"
+#
+#mycursor.execute(
+#    "CREATE TABLE IF NOT EXISTS heartbeat_records (datetime VARCHAR(255), heart_rate INT)"
+#)
 # mycursor.execute("DROP TABLE IF EXISTS iot_devices")
-mycursor.execute("SHOW TABLES")
-for x in mycursor:
-    print(x)
-    mycursor.execute("SHOW COLUMNS FROM heartbeat_records")
-    for col in mycursor:
-        print("Column:", col)
+#mycursor.execute("SHOW TABLES")
+#for x in mycursor:
+#    print(x)
+#    mycursor.execute("SHOW COLUMNS FROM heartbeat_records")
+#    for col in mycursor:
+#        print("Column:", col)
 
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 client.on_connect = on_connect

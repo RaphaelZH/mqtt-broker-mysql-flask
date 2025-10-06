@@ -47,18 +47,28 @@ services:
     environment:
       MQTT_BROKER_HOST: mqtt-broker # Use the service name as hostname
       MQTT_BROKER_PORT: 1883
+      MYSQL_HOST: mysql-db
+      MYSQL_USER: raphaelzh
+      MYSQL_PASSWORD: 123456 # Replace with the password set in MySQL service
+      MYSQL_DATABASE: heartbeat_monitor
+    restart: unless-stopped
     networks:
       - mqtt_network
 
   mysql-db:
-    image: mysql:latest
+    image: mysql:latest # Path to your MySQL Dockerfile or use an image like 'mysql:latest'
     container_name: mysql_db
     hostname: my-mysql-server
     environment:
       MYSQL_ROOT_PASSWORD: 123456 # Replace with a strong password
+      MYSQL_DATABASE: heartbeat_monitor
+      MYSQL_USER: raphaelzh
+      MYSQL_PASSWORD: 123456 # Replace with a strong password for the user
+      MYSQL_ROOT_HOST: "%" # Allow root access from any host (for development purposes)
     ports:
       - "13306:3306" # Standard MySQL port
     volumes:
+      - ./mysql-init-scripts:/docker-entrypoint-initdb.d # Optional: For initial setup scripts
       - ./mysql/data:/var/lib/mysql
       - ./mysql/initdb:/docker-entrypoint-initdb.d # Optional: For initial setup scripts
       - ./mysql/log:/var/log/mysql
