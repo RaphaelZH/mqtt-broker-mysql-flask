@@ -1,77 +1,67 @@
-1759704069: mosquitto version 2.0.22 starting
-1759704069: Config loaded from /mosquitto/config/mosquitto.conf.
-1759704069: Opening ipv4 listen socket on port 1883.
-1759704069: Opening ipv6 listen socket on port 1883.
-1759704069: Opening websockets listen socket on port 9001.
-1759704069: Opening ipv4 listen socket on port 8883.
-1759704069: Opening ipv6 listen socket on port 8883.
-1759704069: Opening websockets listen socket on port 9002.
-1759704069: mosquitto version 2.0.22 running
-1759704069: New connection from 172.18.0.4:40599 on port 1883.
-1759704069: New connection from 172.18.0.3:34021 on port 1883.
-1759704069: New client connected from 172.18.0.4:40599 as auto-7CB8295C-0871-4C4E-87D7-273AD7E8608C (p2, c1, k60).
-1759704069: No will message specified.
-1759704069: Sending CONNACK to auto-7CB8295C-0871-4C4E-87D7-273AD7E8608C (0, 0)
-1759704069: New client connected from 172.18.0.3:34021 as auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (p2, c1, k60).
-1759704069: No will message specified.
-1759704069: Sending CONNACK to auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (0, 0)
-1759704069: Received SUBSCRIBE from auto-7CB8295C-0871-4C4E-87D7-273AD7E8608C
-1759704069: 	test/topic (QoS 0)
-1759704069: auto-7CB8295C-0871-4C4E-87D7-273AD7E8608C 0 test/topic
-1759704069: Sending SUBACK to auto-7CB8295C-0871-4C4E-87D7-273AD7E8608C
-1759704069: Received PUBLISH from auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704069: Sending PUBLISH to auto-7CB8295C-0871-4C4E-87D7-273AD7E8608C (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704069: Received SUBSCRIBE from auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353
-1759704069: 	test/topic (QoS 0)
-1759704069: auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 0 test/topic
-1759704069: Sending SUBACK to auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353
-1759704074: New connection from ::1:35174 on port 1883.
-1759704074: New client connected from ::1:35174 as auto-E1FEF726-2428-4DEE-5CB4-AE3F55CF633B (p2, c1, k60).
-1759704074: No will message specified.
-1759704074: Sending CONNACK to auto-E1FEF726-2428-4DEE-5CB4-AE3F55CF633B (0, 0)
-1759704074: Received SUBSCRIBE from auto-E1FEF726-2428-4DEE-5CB4-AE3F55CF633B
-1759704074: 	healthcheck (QoS 0)
-1759704074: auto-E1FEF726-2428-4DEE-5CB4-AE3F55CF633B 0 healthcheck
-1759704074: Sending SUBACK to auto-E1FEF726-2428-4DEE-5CB4-AE3F55CF633B
-1759704074: Received PUBLISH from auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704074: Sending PUBLISH to auto-7CB8295C-0871-4C4E-87D7-273AD7E8608C (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704074: Sending PUBLISH to auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704079: Received PUBLISH from auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704079: Sending PUBLISH to auto-7CB8295C-0871-4C4E-87D7-273AD7E8608C (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704079: Sending PUBLISH to auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704084: Received PUBLISH from auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704084: Sending PUBLISH to auto-7CB8295C-0871-4C4E-87D7-273AD7E8608C (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704084: Sending PUBLISH to auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704089: Received PUBLISH from auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704089: Sending PUBLISH to auto-7CB8295C-0871-4C4E-87D7-273AD7E8608C (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704089: Sending PUBLISH to auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704091: New connection from ::1:41274 on port 1883.
-1759704091: New client connected from ::1:41274 as auto-1DC760D5-1A25-D118-249C-11FB806542A7 (p2, c1, k60).
-1759704091: No will message specified.
-1759704091: Sending CONNACK to auto-1DC760D5-1A25-D118-249C-11FB806542A7 (0, 0)
-1759704091: Received SUBSCRIBE from auto-1DC760D5-1A25-D118-249C-11FB806542A7
-1759704091: 	healthcheck (QoS 0)
-1759704091: auto-1DC760D5-1A25-D118-249C-11FB806542A7 0 healthcheck
-1759704091: Sending SUBACK to auto-1DC760D5-1A25-D118-249C-11FB806542A7
-1759704094: Received PUBLISH from auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704094: Sending PUBLISH to auto-7CB8295C-0871-4C4E-87D7-273AD7E8608C (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704094: Sending PUBLISH to auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704099: Received PUBLISH from auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704099: Sending PUBLISH to auto-7CB8295C-0871-4C4E-87D7-273AD7E8608C (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704099: Sending PUBLISH to auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704104: Received PUBLISH from auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704104: Sending PUBLISH to auto-7CB8295C-0871-4C4E-87D7-273AD7E8608C (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704104: Sending PUBLISH to auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704109: Received PUBLISH from auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704109: Sending PUBLISH to auto-7CB8295C-0871-4C4E-87D7-273AD7E8608C (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704109: Sending PUBLISH to auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704114: Received PUBLISH from auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704114: Sending PUBLISH to auto-7CB8295C-0871-4C4E-87D7-273AD7E8608C (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704114: Sending PUBLISH to auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704119: Received PUBLISH from auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704119: Sending PUBLISH to auto-7CB8295C-0871-4C4E-87D7-273AD7E8608C (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704119: Sending PUBLISH to auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 (d0, q0, r0, m0, 'test/topic', ... (18 bytes))
-1759704121: Client auto-7CB8295C-0871-4C4E-87D7-273AD7E8608C closed its connection.
-1759704121: Client auto-C975F9B0-AE2A-186C-EE2C-81F8AD488353 closed its connection.
-1759704121: mosquitto version 2.0.22 terminating
-1759704121: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1759729349: mosquitto version 2.0.22 starting
+1759729349: Config loaded from /mosquitto/config/mosquitto.conf.
+1759729349: Opening ipv4 listen socket on port 1883.
+1759729349: Opening ipv6 listen socket on port 1883.
+1759729349: Opening websockets listen socket on port 9001.
+1759729349: Opening ipv4 listen socket on port 8883.
+1759729349: Opening ipv6 listen socket on port 8883.
+1759729349: Opening websockets listen socket on port 9002.
+1759729349: mosquitto version 2.0.22 running
+1759729349: New connection from 172.18.0.3:38465 on port 1883.
+1759729349: New client connected from 172.18.0.3:38465 as auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70 (p2, c1, k60).
+1759729349: No will message specified.
+1759729349: Sending CONNACK to auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70 (0, 0)
+1759729349: Received PUBLISH from auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70 (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729349: Received SUBSCRIBE from auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70
+1759729349: 	heart_rate/topic (QoS 0)
+1759729349: auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70 0 heart_rate/topic
+1759729349: Sending SUBACK to auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70
+1759729349: New connection from 172.18.0.4:35169 on port 1883.
+1759729349: New client connected from 172.18.0.4:35169 as auto-620FC77B-A2F2-6533-06B2-E7F589A83D1A (p2, c1, k60).
+1759729349: No will message specified.
+1759729349: Sending CONNACK to auto-620FC77B-A2F2-6533-06B2-E7F589A83D1A (0, 0)
+1759729349: Received SUBSCRIBE from auto-620FC77B-A2F2-6533-06B2-E7F589A83D1A
+1759729349: 	heart_rate/topic (QoS 0)
+1759729349: auto-620FC77B-A2F2-6533-06B2-E7F589A83D1A 0 heart_rate/topic
+1759729349: Sending SUBACK to auto-620FC77B-A2F2-6533-06B2-E7F589A83D1A
+1759729354: New connection from ::1:46880 on port 1883.
+1759729354: New client connected from ::1:46880 as auto-E9557A46-E1F0-56A0-D779-600BED6DD6C4 (p2, c1, k60).
+1759729354: No will message specified.
+1759729354: Sending CONNACK to auto-E9557A46-E1F0-56A0-D779-600BED6DD6C4 (0, 0)
+1759729354: Received SUBSCRIBE from auto-E9557A46-E1F0-56A0-D779-600BED6DD6C4
+1759729354: 	healthcheck (QoS 0)
+1759729354: auto-E9557A46-E1F0-56A0-D779-600BED6DD6C4 0 healthcheck
+1759729354: Sending SUBACK to auto-E9557A46-E1F0-56A0-D779-600BED6DD6C4
+1759729354: Received PUBLISH from auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70 (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729354: Sending PUBLISH to auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70 (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729354: Sending PUBLISH to auto-620FC77B-A2F2-6533-06B2-E7F589A83D1A (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729359: Received PUBLISH from auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70 (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729359: Sending PUBLISH to auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70 (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729359: Sending PUBLISH to auto-620FC77B-A2F2-6533-06B2-E7F589A83D1A (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729364: Received PUBLISH from auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70 (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729364: Sending PUBLISH to auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70 (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729364: Sending PUBLISH to auto-620FC77B-A2F2-6533-06B2-E7F589A83D1A (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729369: New connection from ::1:32768 on port 1883.
+1759729369: New client connected from ::1:32768 as auto-841250B0-C55B-2713-990D-8B1FE3699CED (p2, c1, k60).
+1759729369: No will message specified.
+1759729369: Sending CONNACK to auto-841250B0-C55B-2713-990D-8B1FE3699CED (0, 0)
+1759729369: Received SUBSCRIBE from auto-841250B0-C55B-2713-990D-8B1FE3699CED
+1759729369: 	healthcheck (QoS 0)
+1759729369: auto-841250B0-C55B-2713-990D-8B1FE3699CED 0 healthcheck
+1759729369: Sending SUBACK to auto-841250B0-C55B-2713-990D-8B1FE3699CED
+1759729369: Received PUBLISH from auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70 (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729369: Sending PUBLISH to auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70 (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729369: Sending PUBLISH to auto-620FC77B-A2F2-6533-06B2-E7F589A83D1A (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729374: Received PUBLISH from auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70 (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729374: Sending PUBLISH to auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70 (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729374: Sending PUBLISH to auto-620FC77B-A2F2-6533-06B2-E7F589A83D1A (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729379: Received PUBLISH from auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70 (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729379: Sending PUBLISH to auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70 (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729379: Sending PUBLISH to auto-620FC77B-A2F2-6533-06B2-E7F589A83D1A (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729384: Received PUBLISH from auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70 (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729384: Sending PUBLISH to auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70 (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729384: Sending PUBLISH to auto-620FC77B-A2F2-6533-06B2-E7F589A83D1A (d0, q0, r0, m0, 'heart_rate/topic', ... (53 bytes))
+1759729386: Client auto-620FC77B-A2F2-6533-06B2-E7F589A83D1A closed its connection.
+1759729386: Client auto-6E7A7B1A-AF21-2D80-0FFE-89B6E9AA0C70 closed its connection.
+1759729387: mosquitto version 2.0.22 terminating
+1759729387: Saving in-memory database to /mosquitto/data//mosquitto.db.

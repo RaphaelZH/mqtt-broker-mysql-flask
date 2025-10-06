@@ -42,6 +42,7 @@ services:
     build: ./python-app/subscriber # Path to your Python application's Dockerfile
     container_name: mqtt_subscriber
     depends_on:
+      - mysql-db
       - mqtt-broker # Ensures broker starts before the app
     environment:
       MQTT_BROKER_HOST: mqtt-broker # Use the service name as hostname
@@ -51,17 +52,16 @@ services:
 
   mysql-db:
     image: mysql:latest
-    container_name: mysql_database
+    container_name: mysql_db
+    hostname: my-mysql-server
     environment:
       MYSQL_ROOT_PASSWORD: 123456 # Replace with a strong password
-      MYSQL_DATABASE: mqtt_db # Replace with your desired database name
-      MYSQL_USER: raphaelzh # Replace with your desired username
-      MYSQL_PASSWORD: 123456 # Replace with a strong password
     ports:
-      # - "3306:3306" # Standard MySQL port
       - "13306:3306" # Standard MySQL port
     volumes:
       - ./mysql/data:/var/lib/mysql
+      - ./mysql/initdb:/docker-entrypoint-initdb.d # Optional: For initial setup scripts
+      - ./mysql/log:/var/log/mysql
     restart: unless-stopped
     depends_on:
       - mqtt-broker # Optional: Ensure MQTT starts first if your application relies on it
@@ -70,6 +70,7 @@ services:
 
 networks:
   mqtt_network:
+    name: mqtt_network
     driver: bridge
 
 volumes:
