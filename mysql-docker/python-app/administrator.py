@@ -1,5 +1,10 @@
-import os
 import mysql.connector
+
+from flask import Flask
+
+import os
+
+app = Flask(__name__)
 
 # Get database credentials from environment variables
 MYSQL_HOST = os.getenv("MYSQL_HOST")
@@ -22,22 +27,10 @@ def connect_to_mysql():
         return None
 
 
-if __name__ == "__main__":
-    if db_connection := connect_to_mysql():
-        print("Successfully connected to MySQL!")
-        # Example: Create a cursor and execute a query
-        cursor = db_connection.cursor()
-        cursor.execute(
-            "CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255))"
-        )
-        db_connection.close()
-    else:
-        print("Failed to connect to MySQL.")
-
-'''
-@app.route('/')
+@app.route("/")
 def index():
     return "Hello from Flask!"
+
 
 @app.route("/databases")
 def list_databases():
@@ -53,7 +46,4 @@ def list_databases():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host=MYSQL_HOST, port=5000)
-
-
-'''
+    app.run(debug=True, host="0.0.0.0", port=5000)
