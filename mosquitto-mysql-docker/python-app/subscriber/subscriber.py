@@ -32,7 +32,7 @@ def on_message(client, userdata, message):
 
 
 mydb = mysql.connector.connect(
-    host="my-mysql-server", user="root", password="123456", port=13306
+    host="host.docker.internal", user="root", password="Métronome", port=3306
 )
 
 # Create a cursor object
