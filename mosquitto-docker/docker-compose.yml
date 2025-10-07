@@ -29,6 +29,7 @@ services:
     depends_on:
       - mqtt-broker # Ensures broker starts before the app
     environment:
+      PYTHONUNBUFFERED: 1
       MQTT_BROKER_HOST: mqtt-broker # Use the service name as hostname
       MQTT_BROKER_PORT: 1883
     networks:
@@ -40,6 +41,7 @@ services:
     depends_on:
       - mqtt-broker # Ensures broker starts before the app
     environment:
+      PYTHONUNBUFFERED: 1
       MQTT_BROKER_HOST: mqtt-broker # Use the service name as hostname
       MQTT_BROKER_PORT: 1883
     networks:

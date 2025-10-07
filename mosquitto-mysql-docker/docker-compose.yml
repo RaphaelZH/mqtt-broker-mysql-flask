@@ -33,6 +33,7 @@ services:
     depends_on:
       - mqtt-broker # Ensures broker starts before the app
     environment:
+      PYTHONUNBUFFERED: 1
       MQTT_BROKER_HOST: mqtt-broker # Use the service name as hostname
       MQTT_BROKER_PORT: 1883
     networks:
@@ -44,12 +45,13 @@ services:
     ports:
       - "15000:5000" # Example port if your Python app is a web server
     depends_on:
-      - mysql_db
+      - mysql-database
       - mqtt-broker # Ensures broker starts before the app
     environment:
+      PYTHONUNBUFFERED: 1
       MQTT_BROKER_HOST: mqtt-broker # Use the service name as hostname
       MQTT_BROKER_PORT: 1883
-      MYSQL_HOST: mysql_db
+      MYSQL_HOST: mysql-database
       MYSQL_USER: raphaelzh
       MYSQL_PASSWORD: 123456 # Replace with the password set in MySQL service
       MYSQL_DATABASE: heartbeat_monitor
@@ -57,10 +59,10 @@ services:
     networks:
       - mqtt_network
 
-  mysql_db:
+  mysql-database:
     image: mysql:latest # Path to your MySQL Dockerfile or use an image like 'mysql:latest'
     container_name: mysql_database
-    hostname: mysql_db
+    hostname: mysql-database
     environment:
       MYSQL_ROOT_PASSWORD: 123456 # Replace with a strong password
       MYSQL_DATABASE: heartbeat_monitor
