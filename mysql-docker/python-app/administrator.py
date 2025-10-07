@@ -1,13 +1,17 @@
 import mysql.connector
 
+from flask import Flask, render_template
+
 import os
 import time
 
+app = Flask(__name__)
 # Get database credentials from environment variables
 MYSQL_HOST = os.getenv("MYSQL_HOST")
 MYSQL_USER = os.getenv("MYSQL_USER")
 MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD")
 MYSQL_DATABASE = os.getenv("MYSQL_DATABASE")
+
 
 def connect_to_mysql():
     try:
@@ -22,10 +26,23 @@ def connect_to_mysql():
         print(f"Error connecting to MySQL: {err}")
         return None
 
+
 def random_heart_rate():
     return 60 + int(40 * os.urandom(1)[0] / 255)  # Random heart rate between 60 and 100
 
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    heart_rate = random_heart_rate()
+    stop = 0
+    return render_template(
+        "index.html", title="Heartbeat Monitor", heart_rate=heart_rate, stop=stop
+    )
+
+
 if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)
+
     if db_connection := connect_to_mysql():
         print("Successfully connected to MySQL!")
     else:
@@ -46,15 +63,8 @@ if __name__ == "__main__":
         val = (time.strftime("%Y-%m-%d %H:%M:%S"), heart_rate)
         my_cursor.execute(sql, val)
         print(my_cursor.rowcount, "record inserted.")
-        
+
         time.sleep(5)
-
-
-
-
-
-
-
 
 
 # Execute the CREATE DATABASE IF NOT EXISTS statement
