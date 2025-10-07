@@ -1,11 +1,17 @@
+from unittest import result
 import paho.mqtt.client as mqtt
 
 import mysql.connector
+
+from flask import Flask, render_template
 
 import json
 import os
 import time
 
+app = Flask(__name__)
+
+# Get MQTT broker credentials from environment variables
 MQTT_BROKER_HOST = os.getenv("MQTT_BROKER_HOST")
 MQTT_BROKER_PORT = int(os.getenv("MQTT_BROKER_PORT"))
 
@@ -17,6 +23,7 @@ MYSQL_DATABASE = os.getenv("MYSQL_DATABASE")
 
 
 def handle_telemetry(client, userdata, message):
+    global heart_rate
     payload = json.loads(message.payload.decode())
     print("Message received:", payload)
 
@@ -50,6 +57,18 @@ def connect_to_mysql():
         return None
 
 
+@app.route("/", methods=["GET", "POST"])
+def index():
+    stop = 0
+    my_cursor.execute(
+        "SELECT heart_rate FROM heartbeat_records ORDER BY datetime DESC LIMIT 1;"
+    )
+    result = my_cursor.fetchone()
+    return render_template(
+        "index.html", title="Heartbeat Monitor", heart_rate=result[0], stop=stop
+    )
+
+
 if __name__ == "__main__":
     if db_connection := connect_to_mysql():
         print("Successfully connected to MySQL!")
@@ -73,6 +92,8 @@ if __name__ == "__main__":
     client.connect(MQTT_BROKER_HOST, MQTT_BROKER_PORT, 60)
 
     client.loop_start()
+
+    app.run(host="0.0.0.0", port=5000, debug=True)
 
     while True:
         time.sleep(5)
