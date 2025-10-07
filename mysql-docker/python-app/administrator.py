@@ -1,12 +1,13 @@
-import os
 import mysql.connector
+
+import os
+import time
 
 # Get database credentials from environment variables
 MYSQL_HOST = os.getenv("MYSQL_HOST")
 MYSQL_USER = os.getenv("MYSQL_USER")
 MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD")
 MYSQL_DATABASE = os.getenv("MYSQL_DATABASE")
-
 
 def connect_to_mysql():
     try:
@@ -21,67 +22,53 @@ def connect_to_mysql():
         print(f"Error connecting to MySQL: {err}")
         return None
 
+def random_heart_rate():
+    return 60 + int(40 * os.urandom(1)[0] / 255)  # Random heart rate between 60 and 100
 
 if __name__ == "__main__":
     if db_connection := connect_to_mysql():
         print("Successfully connected to MySQL!")
-        # Example: Create a cursor and execute a query
-        cursor = db_connection.cursor()
-        cursor.execute(
-            "CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255))"
-        )
-        db_connection.close()
     else:
         print("Failed to connect to MySQL.")
 
-"""
-import mysql.connector
+    db_connection = connect_to_mysql()
+    db_connection.autocommit = True
+    my_cursor = db_connection.cursor()
+    my_cursor.execute(
+        "CREATE TABLE IF NOT EXISTS heartbeat_records (datetime VARCHAR(255), heart_rate INT)"
+    )
+    db_connection.database = "heartbeat_monitor"
+    db_connection.table = "heartbeat_records"
 
-from flask import Flask
-
-import os
-
-app = Flask(__name__)
-
-# Get database credentials from environment variables
-MYSQL_HOST = os.getenv("MYSQL_HOST")
-MYSQL_USER = os.getenv("MYSQL_USER")
-MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD")
-MYSQL_DATABASE = os.getenv("MYSQL_DATABASE")
-
-
-def connect_to_mysql():
-    try:
-        return mysql.connector.connect(
-            host=MYSQL_HOST,
-            user=MYSQL_USER,
-            password=MYSQL_PASSWORD,
-            database=MYSQL_DATABASE,
-            port=3306,
-        )
-    except mysql.connector.Error as err:
-        print(f"Error connecting to MySQL: {err}")
-        return None
+    sql = "INSERT INTO heartbeat_records (datetime, heart_rate) VALUES (%s, %s)"
+    while True:
+        heart_rate = random_heart_rate()
+        val = (time.strftime("%Y-%m-%d %H:%M:%S"), heart_rate)
+        my_cursor.execute(sql, val)
+        print(my_cursor.rowcount, "record inserted.")
+        
+        time.sleep(5)
 
 
-@app.route("/")
-def index():
-    return "Hello from Flask!"
 
 
-@app.route("/databases")
-def list_databases():
-    try:
-        db_connection = connect_to_mysql()
-        with db_connection.cursor() as cursor:
-            cursor.execute("SHOW DATABASES;")
-            databases = cursor.fetchall()
-        db_connection.close()
-        return {"databases": [db["Database"] for db in databases]}
-    except Exception as e:
-        return {"error": str(e)}, 500
 
 
-if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=5000)
-"""
+
+
+
+# Execute the CREATE DATABASE IF NOT EXISTS statement
+# sql_query = "CREATE DATABASE IF NOT EXISTS heartbeat_monitor"
+# mycursor.execute(sql_query)
+# mydb.database = "heartbeat_monitor"
+#
+# mycursor.execute(
+#    "CREATE TABLE IF NOT EXISTS heartbeat_records (datetime VARCHAR(255), heart_rate INT)"
+# )
+# mycursor.execute("DROP TABLE IF EXISTS iot_devices")
+# mycursor.execute("SHOW TABLES")
+# for x in mycursor:
+#    print(x)
+#    mycursor.execute("SHOW COLUMNS FROM heartbeat_records")
+#    for col in mycursor:
+#        print("Column:", col)
