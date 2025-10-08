@@ -29,9 +29,11 @@
         <!-- Header -->
         <header id="header">
           <h1>
-            Heartbeat Monitor
-            <i class="fas fa-heartbeat" style="color: #bec2cb"></i> {{
-            heart_rate }}
+            <div style="display: inline-block">Heartbeat Monitor&nbsp;&nbsp;</div>
+            <div id="heartbeat_chart" style="display: inline-block">
+              <i class="fas fa-heartbeat" style="color: #bec2cb"></i>
+            </div>
+            <div style="display: inline-block">&nbsp;&nbsp;{{ heart_rate }}</div>
           </h1>
           <p>
             Docker &nbsp;&bull;&nbsp; MQTT &nbsp;&bull;&nbsp; MySQL

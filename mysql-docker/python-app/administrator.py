@@ -1,6 +1,6 @@
 import mysql.connector
 
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 
 import os
 import time
@@ -31,18 +31,24 @@ def random_heart_rate():
     return 60 + int(40 * os.urandom(1)[0] / 255)  # Random heart rate between 60 and 100
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
 def index():
-    heart_rate = random_heart_rate()
-    stop = 0
-    return render_template(
-        "index.html", title="Heartbeat Monitor", heart_rate=heart_rate, stop=stop
+    return render_template("index.html", title="Heartbeat Monitor")
+
+
+@app.route("/api/stock_quote")
+def stock_quote():
+    my_cursor.execute(
+        "SELECT heart_rate FROM heartbeat_records ORDER BY datetime DESC LIMIT 1;"
     )
+    result = my_cursor.fetchone()
+    heart_rate = result[0]
+    data = {"heart_rate": heart_rate}
+
+    return jsonify(data)
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
-
     if db_connection := connect_to_mysql():
         print("Successfully connected to MySQL!")
     else:
@@ -58,6 +64,9 @@ if __name__ == "__main__":
     db_connection.table = "heartbeat_records"
 
     sql = "INSERT INTO heartbeat_records (datetime, heart_rate) VALUES (%s, %s)"
+
+    app.run(host="0.0.0.0", port=5000, debug=True)
+
     while True:
         heart_rate = random_heart_rate()
         val = (time.strftime("%Y-%m-%d %H:%M:%S"), heart_rate)

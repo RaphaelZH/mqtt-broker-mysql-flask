@@ -17,9 +17,25 @@
       ><link rel="stylesheet" href="static/css/noscript.css"
     /></noscript>
 
-    {% if 0 == stop %}
-    <meta http-equiv="refresh" content="14 ; url={{ url_for('index') }}" />
-    {% endif %}
+    <div id="heart-rate">
+      <!-- Initial content will be here or dynamically loaded -->
+    </div>
+    <script type="text/javascript">
+      setInterval(function () {
+        $.ajax({
+          url: "/api/stock_quote",
+          type: "GET",
+          dataType: "json",
+          success: function (data) {
+            $("#heart-rate").text(data.heart_rate);
+            console.log("Data refreshed successfully!");
+          },
+          error: function (xhr, status, error) {
+            console.error("AJAX error:", status, error);
+          },
+        });
+      }, 1000); // Update every second
+    </script>
   </head>
   <body class="is-preload">
     <div id="wrapper">
@@ -29,9 +45,11 @@
         <!-- Header -->
         <header id="header">
           <h1>
-            Heartbeat Monitor
-            <i class="fas fa-heartbeat" style="color: #bec2cb"></i> {{
-            heart_rate }}
+            <div style="display: inline-block">Heartbeat Monitor&nbsp;&nbsp;</div>
+            <div id="heartbeat_chart" style="display: inline-block">
+              <i class="fas fa-heartbeat" style="color: #bec2cb"></i>
+            </div>
+            <div id="heart-rate"></div>
           </h1>
           <p>
             Docker &nbsp;&bull;&nbsp; MQTT &nbsp;&bull;&nbsp; MySQL

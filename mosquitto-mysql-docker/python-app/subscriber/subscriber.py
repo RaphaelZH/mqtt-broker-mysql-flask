@@ -23,7 +23,6 @@ MYSQL_DATABASE = os.getenv("MYSQL_DATABASE")
 
 
 def handle_telemetry(client, userdata, message):
-    global heart_rate
     payload = json.loads(message.payload.decode())
     print("Message received:", payload)
 
