@@ -43,7 +43,13 @@ def index():
 
 
 def background_thread():
+    sql = "INSERT INTO heartbeat_records (datetime, heart_rate) VALUES (%s, %s)"
     while True:
+        heart_rate = random_heart_rate()
+        val = (time.strftime("%Y-%m-%d %H:%M:%S"), heart_rate)
+        my_cursor.execute(sql, val)
+        print(my_cursor.rowcount, "record inserted.")
+        
         # Generate or fetch the value you want to update
         my_cursor.execute(
             "SELECT heart_rate FROM heartbeat_records ORDER BY datetime DESC LIMIT 1;"
@@ -91,9 +97,3 @@ if __name__ == "__main__":
 
     while True:
         time.sleep(2)
-        heart_rate = random_heart_rate()
-        sql = "INSERT INTO heartbeat_records (datetime, heart_rate) VALUES (%s, %s)"
-        val = (time.strftime("%Y-%m-%d %H:%M:%S"), heart_rate)
-        my_cursor.execute(sql, val)
-        print(my_cursor.rowcount, "record inserted.")
-        print("<<<" + heart_rate)
