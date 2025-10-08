@@ -1,11 +1,17 @@
 import mysql.connector
 
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template
+from flask_socketio import SocketIO, emit
+import threading
 
 import os
 import time
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "123456"  # Replace with a strong secret key
+socketio = SocketIO(app)
+thread_lock = threading.Lock()
+
 # Get database credentials from environment variables
 MYSQL_HOST = os.getenv("MYSQL_HOST")
 MYSQL_USER = os.getenv("MYSQL_USER")
@@ -36,16 +42,34 @@ def index():
     return render_template("index.html", title="Heartbeat Monitor")
 
 
-@app.route("/api/stock_quote")
-def stock_quote():
-    my_cursor.execute(
-        "SELECT heart_rate FROM heartbeat_records ORDER BY datetime DESC LIMIT 1;"
-    )
-    result = my_cursor.fetchone()
-    heart_rate = result[0]
-    data = {"heart_rate": heart_rate}
+def background_thread():
+    while True:
+        # Generate or fetch the value you want to update
+        my_cursor.execute(
+            "SELECT heart_rate FROM heartbeat_records ORDER BY datetime DESC LIMIT 1;"
+        )
+        result = my_cursor.fetchone()
+        heart_rate = result[0]
+        socketio.emit("update_value", {"heart_rate": heart_rate})
+        print(heart_rate)
+        socketio.sleep(2)  # Update every second
 
-    return jsonify(data)
+
+@socketio.on("connect")
+def test_connect():
+    print("Client connected")
+    # Start the background thread if it's not already running
+    if (
+        not hasattr(socketio, "background_thread_running")
+        or not socketio.background_thread_running
+    ):
+        socketio.start_background_task(target=background_thread)
+        socketio.background_thread_running = True
+
+
+@socketio.on("disconnect")
+def test_disconnect():
+    print("Client disconnected")
 
 
 if __name__ == "__main__":
@@ -63,31 +87,13 @@ if __name__ == "__main__":
     db_connection.database = "heartbeat_monitor"
     db_connection.table = "heartbeat_records"
 
-    sql = "INSERT INTO heartbeat_records (datetime, heart_rate) VALUES (%s, %s)"
-
     app.run(host="0.0.0.0", port=5000, debug=True)
 
     while True:
+        time.sleep(2)
         heart_rate = random_heart_rate()
+        sql = "INSERT INTO heartbeat_records (datetime, heart_rate) VALUES (%s, %s)"
         val = (time.strftime("%Y-%m-%d %H:%M:%S"), heart_rate)
         my_cursor.execute(sql, val)
         print(my_cursor.rowcount, "record inserted.")
-
-        time.sleep(5)
-
-
-# Execute the CREATE DATABASE IF NOT EXISTS statement
-# sql_query = "CREATE DATABASE IF NOT EXISTS heartbeat_monitor"
-# mycursor.execute(sql_query)
-# mydb.database = "heartbeat_monitor"
-#
-# mycursor.execute(
-#    "CREATE TABLE IF NOT EXISTS heartbeat_records (datetime VARCHAR(255), heart_rate INT)"
-# )
-# mycursor.execute("DROP TABLE IF EXISTS iot_devices")
-# mycursor.execute("SHOW TABLES")
-# for x in mycursor:
-#    print(x)
-#    mycursor.execute("SHOW COLUMNS FROM heartbeat_records")
-#    for col in mycursor:
-#        print("Column:", col)
+        print("<<<" + heart_rate)

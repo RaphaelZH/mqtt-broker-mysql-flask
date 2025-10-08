@@ -32,4 +32,4 @@ while True:
     print(f"Publishing heart rate: {heart_rate}")
     print("Sending telemetry: ", telemetry)
     client.publish("heart_rate/topic", telemetry)
-    time.sleep(5)
+    time.sleep(2)

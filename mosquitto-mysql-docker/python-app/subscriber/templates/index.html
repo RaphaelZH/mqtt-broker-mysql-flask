@@ -16,10 +16,18 @@
     <noscript
       ><link rel="stylesheet" href="static/css/noscript.css"
     /></noscript>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script type="text/javascript">
+      var socket = io();
 
-    {% if 0 == stop %}
-    <meta http-equiv="refresh" content="14 ; url={{ url_for('index') }}" />
-    {% endif %}
+      socket.on("connect", function () {
+        console.log("Connected to server!");
+      });
+
+      socket.on("update_value", function (msg) {
+        document.getElementById("realtime-value").innerText = msg.heart_rate;
+      });
+    </script>
   </head>
   <body class="is-preload">
     <div id="wrapper">
@@ -29,11 +37,15 @@
         <!-- Header -->
         <header id="header">
           <h1>
-            <div style="display: inline-block">Heartbeat Monitor&nbsp;&nbsp;</div>
+            <div style="display: inline-block">
+              Heartbeat Monitor&nbsp;&nbsp;
+            </div>
             <div id="heartbeat_chart" style="display: inline-block">
               <i class="fas fa-heartbeat" style="color: #bec2cb"></i>
             </div>
-            <div style="display: inline-block">&nbsp;&nbsp;{{ heart_rate }}</div>
+            <div id="realtime-value" style="display: inline-block">
+              <span style="display: inline-block">&nbsp;&nbsp;&nbsp;</span>Loading...
+            </div>
           </h1>
           <p>
             Docker &nbsp;&bull;&nbsp; MQTT &nbsp;&bull;&nbsp; MySQL

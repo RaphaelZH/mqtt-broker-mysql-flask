@@ -16,25 +16,17 @@
     <noscript
       ><link rel="stylesheet" href="static/css/noscript.css"
     /></noscript>
-
-    <div id="heart-rate">
-      <!-- Initial content will be here or dynamically loaded -->
-    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script type="text/javascript">
-      setInterval(function () {
-        $.ajax({
-          url: "/api/stock_quote",
-          type: "GET",
-          dataType: "json",
-          success: function (data) {
-            $("#heart-rate").text(data.heart_rate);
-            console.log("Data refreshed successfully!");
-          },
-          error: function (xhr, status, error) {
-            console.error("AJAX error:", status, error);
-          },
-        });
-      }, 1000); // Update every second
+      var socket = io();
+
+      socket.on("connect", function () {
+        console.log("Connected to server!");
+      });
+
+      socket.on("update_value", function (msg) {
+        document.getElementById("realtime-value").innerText = msg.heart_rate;
+      });
     </script>
   </head>
   <body class="is-preload">
@@ -45,11 +37,15 @@
         <!-- Header -->
         <header id="header">
           <h1>
-            <div style="display: inline-block">Heartbeat Monitor&nbsp;&nbsp;</div>
+            <div style="display: inline-block">
+              Heartbeat Monitor&nbsp;&nbsp;
+            </div>
             <div id="heartbeat_chart" style="display: inline-block">
               <i class="fas fa-heartbeat" style="color: #bec2cb"></i>
             </div>
-            <div id="heart-rate"></div>
+            <div id="realtime-value" style="display: inline-block">
+              <span style="display: inline-block">&nbsp;&nbsp;&nbsp;&nbsp;</span>Loading...
+            </div>
           </h1>
           <p>
             Docker &nbsp;&bull;&nbsp; MQTT &nbsp;&bull;&nbsp; MySQL

@@ -4,12 +4,17 @@ import paho.mqtt.client as mqtt
 import mysql.connector
 
 from flask import Flask, render_template
+from flask_socketio import SocketIO, emit
+import threading
 
 import json
 import os
 import time
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "123456"  # Replace with a strong secret key
+socketio = SocketIO(app)
+thread_lock = threading.Lock()
 
 # Get MQTT broker credentials from environment variables
 MQTT_BROKER_HOST = os.getenv("MQTT_BROKER_HOST")
@@ -56,16 +61,39 @@ def connect_to_mysql():
         return None
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
 def index():
-    stop = 0
-    my_cursor.execute(
-        "SELECT heart_rate FROM heartbeat_records ORDER BY datetime DESC LIMIT 1;"
-    )
-    result = my_cursor.fetchone()
-    return render_template(
-        "index.html", title="Heartbeat Monitor", heart_rate=result[0], stop=stop
-    )
+    return render_template("index.html", title="Heartbeat Monitor")
+
+
+def background_thread():
+    while True:
+        # Generate or fetch the value you want to update
+        my_cursor.execute(
+            "SELECT heart_rate FROM heartbeat_records ORDER BY datetime DESC LIMIT 1;"
+        )
+        result = my_cursor.fetchone()
+        heart_rate = result[0]
+        socketio.emit("update_value", {"heart_rate": heart_rate})
+        print(heart_rate)
+        socketio.sleep(2)  # Update every second
+
+
+@socketio.on("connect")
+def test_connect():
+    print("Client connected")
+    # Start the background thread if it's not already running
+    if (
+        not hasattr(socketio, "background_thread_running")
+        or not socketio.background_thread_running
+    ):
+        socketio.start_background_task(target=background_thread)
+        socketio.background_thread_running = True
+
+
+@socketio.on("disconnect")
+def test_disconnect():
+    print("Client disconnected")
 
 
 if __name__ == "__main__":
@@ -95,21 +123,4 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
 
     while True:
-        time.sleep(5)
-
-
-# Execute the CREATE DATABASE IF NOT EXISTS statement
-# sql_query = "CREATE DATABASE IF NOT EXISTS heartbeat_monitor"
-# mycursor.execute(sql_query)
-# mydb.database = "heartbeat_monitor"
-#
-# mycursor.execute(
-#    "CREATE TABLE IF NOT EXISTS heartbeat_records (datetime VARCHAR(255), heart_rate INT)"
-# )
-# mycursor.execute("DROP TABLE IF EXISTS iot_devices")
-# mycursor.execute("SHOW TABLES")
-# for x in mycursor:
-#    print(x)
-#    mycursor.execute("SHOW COLUMNS FROM heartbeat_records")
-#    for col in mycursor:
-#        print("Column:", col)
+        time.sleep(2)
