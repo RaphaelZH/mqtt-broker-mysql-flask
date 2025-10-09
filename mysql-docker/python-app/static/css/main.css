@@ -1214,3 +1214,14 @@ a:hover {
 		transform: scale(1);
 	}
 }
+
+.ecg-animation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.ecg-animation > svg {
+    height: 40vw;
+}
